@@ -114,7 +114,8 @@ print(f"     LaTeX: {to_latex(Uf)}")
 
 # §8r  Interior product ι_X acting on p-forms
 from jacopy.calculus.interior import interior
-iota_U_omega = interior(U_der, omega)
+iota_X = interior(U_der)        # interior(X) returns the operator ι_X
+iota_U_omega = Act(iota_X, omega)
 print(f"\n§8r  ι_U(ω) = {to_ascii(iota_U_omega)}")
 print(f"     LaTeX:  {to_latex(iota_U_omega)}")
 
