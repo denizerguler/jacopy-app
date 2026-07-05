@@ -13,7 +13,7 @@ st.set_page_config(
     layout="wide",
     page_icon="∂",
 )
-st.logo("jacopy_logo.png", size="large")
+st.logo("docs/tutorials/jacopy_logo.png", size="large")
 
 
 # ── Language ──────────────────────────────────────────────────
