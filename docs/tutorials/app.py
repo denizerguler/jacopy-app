@@ -1384,15 +1384,70 @@ with tabs[3]:
 
     with proof_tabs4[0]:
         section_intro(
-            L("Affine Connection, Torsion & Curvature", "Affin Bağlantı, Torsiyon & Eğrilik"),
+            L("Affine Connection, Torsion & Curvature", "Affin Baglanti, Torsiyon & Egrilik"),
             L(
-                "An **affine connection** $\\nabla$ satisfies four axioms (linearity in both slots, Leibniz rule). "
-                "The **torsion** and **curvature** measure the failure of commutativity of covariant derivatives.",
-                "Bir **affin bağlantı** $\\nabla$, dört aksiyomu sağlar (her iki girdide doğrusallık, Leibniz kuralı). "
-                "**Torsiyon** ve **eğrilik**, kovariant türevlerin komutatifliğinin başarısızlığını ölçer."
+                "An **affine connection** $\\nabla$ satisfies four axioms. "
+                "The **torsion** and **curvature** measure the failure of commutativity of covariant derivatives. "
+                "Both are genuine tensors — $C^\\infty(M)$-linear in all arguments.",
+                "Bir **affin baglanti** $\\nabla$, dort aksiyomu saglar. "
+                "**Torsiyon** ve **egrilik**, kovariant turevlerin komutatifligi nin basarisizligini olcer. "
+                "Her ikisi de gercek tensorlerdir — tum argumanlarinda $C^\\infty(M)$-dogrusaldirlar."
             ),
             r"T(\nabla)(X,Y) := \nabla_X Y - \nabla_Y X - [X,Y], \quad R(\nabla)(X,Y)W := \nabla_X\nabla_Y W - \nabla_Y\nabla_X W - \nabla_{[X,Y]}W"
         )
+
+        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanit"), expanded=False):
+            st.markdown(L("### Definition: Affine Connection", "### Tanim: Affin Baglanti"))
+            st.markdown(L(
+                "A map $\\nabla: \\mathfrak{X}(M)\\times\\mathfrak{X}(M)\\to\\mathfrak{X}(M)$ satisfying:",
+                "Bir $\\nabla: \\mathfrak{X}(M)\\times\\mathfrak{X}(M)\\to\\mathfrak{X}(M)$ donusumu:"
+            ))
+            for i, ax in enumerate([
+                (L("Additivity in $X$","$X$'de toplanabilirlik"),
+                 r"\nabla_{X+Y}Z = \nabla_X Z + \nabla_Y Z"),
+                (L("$C^\\infty$-linearity in $X$","$X$'de $C^\\infty$-dogrusallık"),
+                 r"\nabla_{fX}Y = f\nabla_X Y"),
+                (L("Additivity in $Y$","$Y$'de toplanabilirlik"),
+                 r"\nabla_X(Y+Z) = \nabla_X Y + \nabla_X Z"),
+                (L("Leibniz rule in $Y$","$Y$'de Leibniz kurali"),
+                 r"\nabla_X(fY) = X(f)\cdot Y + f\nabla_X Y"),
+            ], 1):
+                st.markdown(f"**Axiom {i}: {ax[0]}**")
+                st.latex(ax[1])
+
+            st.markdown("---")
+            st.markdown(L("### Proof: Torsion is a Tensor", "### Kanit: Torsiyon bir Tensordur"))
+            st.markdown(L(
+                "We verify $C^\\infty$-linearity in $X$ (the $Y$ case is symmetric by antisymmetry):",
+                "$X$'de $C^\\infty$-dogrusalligi dogrulayacagiz ($Y$ durumu antisimetri ile simetriktir):"
+            ))
+            st.markdown(L("**Step 1:** Expand $T(fX, Y)$ using the definition:", "**Adim 1:** Tanimi kullanarak $T(fX, Y)$'yi ac:"))
+            st.latex(r"T(fX,Y) = \nabla_{fX}Y - \nabla_Y(fX) - [fX,Y]")
+            st.markdown(L("**Step 2:** Apply connection axioms and Lie bracket Leibniz:", "**Adim 2:** Baglanti aksiyomlarini ve Lie bracket Leibniz'ini uygula:"))
+            st.latex(r"= f\nabla_X Y - \bigl(Y(f)X + f\nabla_Y X\bigr) - \bigl(f[X,Y] - Y(f)X\bigr)")
+            st.markdown(L("**Step 3:** The $Y(f)X$ terms cancel:", "**Adim 3:** $Y(f)X$ terimleri iptal olur:"))
+            st.latex(r"= f\nabla_X Y - f\nabla_Y X - f[X,Y] = fT(X,Y) \qquad \square")
+
+            st.markdown("---")
+            st.markdown(L("### Proof: Curvature is a Tensor", "### Kanit: Egrilik bir Tensordur"))
+            st.markdown(L("**Step 1:** Expand $R(fX, Y)W$:", "**Adim 1:** $R(fX, Y)W$'yi ac:"))
+            st.latex(r"R(fX,Y)W = \nabla_{fX}\nabla_Y W - \nabla_Y\nabla_{fX}W - \nabla_{[fX,Y]}W")
+            st.markdown(L("**Step 2:** Apply axiom 2 and $[fX,Y] = f[X,Y] - Y(f)X$:", "**Adim 2:** Aksiyom 2 ve $[fX,Y] = f[X,Y] - Y(f)X$ uygula:"))
+            st.latex(r"= f\nabla_X\nabla_Y W - \nabla_Y(f\nabla_X W) - f\nabla_{[X,Y]}W + Y(f)\nabla_X W")
+            st.markdown(L("**Step 3:** Expand $\\nabla_Y(f\\nabla_X W)$ using Leibniz:", "**Adim 3:** Leibniz ile $\\nabla_Y(f\\nabla_X W)$'yi ac:"))
+            st.latex(r"\nabla_Y(f\nabla_X W) = Y(f)\nabla_X W + f\nabla_Y\nabla_X W")
+            st.markdown(L("**Step 4:** The $Y(f)\\nabla_X W$ terms cancel:", "**Adim 4:** $Y(f)\\nabla_X W$ terimleri iptal olur:"))
+            st.latex(r"= f(\nabla_X\nabla_Y W - \nabla_Y\nabla_X W - \nabla_{[X,Y]}W) = fR(X,Y)W \qquad \square")
+
+            st.download_button(
+                L("⬇ Download as LaTeX (.tex)", "⬇ LaTeX olarak indir (.tex)"),
+                '\\documentclass{amsart}\n\\usepackage{amsmath,amssymb,geometry}\n\\geometry{margin=2.5cm}\n\\begin{document}\n\\section*{Affine Connection, Torsion \\& Curvature}\n\n\\subsection*{Definition: Affine Connection}\nAn affine connection $\\nabla$ on a smooth manifold $M$ is a map\n$\\nabla: \\mathfrak{X}(M)\\times\\mathfrak{X}(M)\\to\\mathfrak{X}(M)$,\n$(X,Y)\\mapsto\\nabla_X Y$, satisfying:\n\\begin{enumerate}\n\\item $\\nabla_{X+Y}Z = \\nabla_X Z + \\nabla_Y Z$ \\quad (additivity in $X$)\n\\item $\\nabla_{fX}Y = f\\nabla_X Y$ \\quad ($C^\\infty$-linearity in $X$)\n\\item $\\nabla_X(Y+Z) = \\nabla_X Y + \\nabla_X Z$ \\quad (additivity in $Y$)\n\\item $\\nabla_X(fY) = X(f)\\cdot Y + f\\nabla_X Y$ \\quad (Leibniz rule in $Y$)\n\\end{enumerate}\n\n\\subsection*{Torsion Tensor}\n\\begin{equation*}\nT(\\nabla)(X,Y) := \\nabla_X Y - \\nabla_Y X - [X,Y]\n\\end{equation*}\n$T$ is $C^\\infty(M)$-linear in both $X$ and $Y$ (proof: direct verification using axioms 2 and 4).\n\n\\subsection*{Curvature Tensor}\n\\begin{equation*}\nR(\\nabla)(X,Y)W := \\nabla_X\\nabla_Y W - \\nabla_Y\\nabla_X W - \\nabla_{[X,Y]}W\n\\end{equation*}\n$R$ is $C^\\infty(M)$-linear in $X$, $Y$, and $W$.\n\n\\subsection*{Proof: Torsion is a Tensor}\n\\begin{proof}\nWe verify $C^\\infty$-linearity in $X$ (the $Y$ case is symmetric):\n\\begin{align*}\nT(fX,Y) &= \\nabla_{fX}Y - \\nabla_Y(fX) - [fX,Y] \\\\\n&= f\\nabla_X Y - (Y(f)X + f\\nabla_Y X) - (f[X,Y] - Y(f)X) \\\\\n&= f\\nabla_X Y - Y(f)X - f\\nabla_Y X - f[X,Y] + Y(f)X \\\\\n&= f(\\nabla_X Y - \\nabla_Y X - [X,Y]) = fT(X,Y). \\qquad\\square\n\\end{align*}\n\\end{proof}\n\\end{document}',
+                file_name="connection_torsion_curvature_proof.tex",
+                mime="text/plain",
+                key="dl_iv0",
+            )
+
+        st.markdown("---")
         T_ma = Torsion(nabla, X_ma, Y_ma)
         R_ma = Curvature(nabla, X_ma, Y_ma, W_ma)
         nabla_XY = nabla.eval(X_ma, Y_ma)
@@ -1400,51 +1455,121 @@ with tabs[3]:
         c1.write("**∇_X Y**"); c1.code(to_ascii(nabla_XY)); c1.latex(to_latex(nabla_XY))
         c2.write("**T(X,Y)**"); c2.code(to_ascii(T_ma)); c2.latex(to_latex(T_ma))
         c3.write("**R(X,Y)W**"); c3.code(to_ascii(R_ma)); c3.latex(to_latex(R_ma))
-        st.markdown(L("**Four connection axioms:**","**Dört bağlantı aksiyomu:**"))
-        for ax in [
-            r"\nabla_{X+Y}Z = \nabla_X Z + \nabla_Y Z",
-            r"\nabla_{fX}Y = f\nabla_X Y",
-            r"\nabla_X(Y+Z) = \nabla_X Y + \nabla_X Z",
-            r"\nabla_X(fY) = X(f)\cdot Y + f\nabla_X Y",
-        ]:
-            st.latex(ax)
 
     with proof_tabs4[1]:
         section_intro(
             L("Bianchi Identities", "Bianchi Kimlikleri"),
             L(
-                "The **first Bianchi identity** relates the cyclic sum of curvature to torsion. "
-                "The **second Bianchi identity** involves the covariant derivative of curvature. "
-                "Both hold for any affine connection — no metric required.",
-                "**Birinci Bianchi kimliği**, eğriliğin döngüsel toplamını torsiyonla ilişkilendirir. "
-                "**İkinci Bianchi kimliği**, eğriliğin kovariant türevini içerir. "
-                "Her ikisi de herhangi bir affin bağlantı için sağlanır — metrik gerekmez."
+                "Two fundamental identities for any affine connection — no metric required. "
+                "The **first** relates cyclic curvature to torsion. "
+                "The **second** is the Jacobi identity for the curvature operator.",
+                "Herhangi bir affin baglanti icin iki temel kimlik — metrik gerekmez. "
+                "**Birincisi** dongusel egiligi torsiyonla iliskilendirir. "
+                "**Ikincisi** egrilik operatoru icin Jacobi kimligidir."
             ),
-            r"\underset{X,Y,Z}{\mathfrak{S}} R(X,Y)Z = \underset{X,Y,Z}{\mathfrak{S}}\left[(\nabla_X T)(Y,Z)+T(T(X,Y),Z)\right]"
+            r"\underset{X,Y,Z}{\mathfrak{S}} R(X,Y)Z = \underset{X,Y,Z}{\mathfrak{S}}\bigl[(\nabla_X T)(Y,Z)+T(T(X,Y),Z)\bigr]"
         )
-        if st.button(L("▶ Prove both Bianchi identities", "▶ Her iki Bianchi kimliğini kanıtla"), key="ma_bianchi"):
+
+        with st.expander(L("📖 Mathematical Proof — Bianchi I", "📖 Matematiksel Kanit — Bianchi I"), expanded=False):
+            st.markdown(L("### First Bianchi Identity", "### Birinci Bianchi Kimligi"))
+            st.latex(r"\underset{X,Y,Z}{\mathfrak{S}}\, R(X,Y)Z = \underset{X,Y,Z}{\mathfrak{S}}\bigl[(\nabla_X T)(Y,Z) + T(T(X,Y),Z)\bigr]")
+            st.markdown(L("**Step 1:** Expand $R(X,Y)Z$ by definition:", "**Adim 1:** Tanim ile $R(X,Y)Z$'yi ac:"))
+            st.latex(r"R(X,Y)Z = \nabla_X\nabla_Y Z - \nabla_Y\nabla_X Z - \nabla_{[X,Y]}Z")
+            st.markdown(L("**Step 2:** Express $[X,Y]$ in terms of torsion:", "**Adim 2:** $[X,Y]$'yi torsiyon cinsinden ifade et:"))
+            st.latex(r"[X,Y] = \nabla_X Y - \nabla_Y X - T(X,Y)")
+            st.markdown(L("**Step 3:** Take cyclic sum $\\mathfrak{S}_{X,Y,Z}$. Second-order terms $\\nabla_X\\nabla_Y Z$ cancel cyclically:", "**Adim 3:** Dongusel toplam $\\mathfrak{S}_{X,Y,Z}$ al. Ikinci mertebe terimler donguse iptal olur:"))
+            st.latex(r"\underset{\mathrm{cycl}}{\mathfrak{S}}\,(\nabla_X\nabla_Y Z - \nabla_Y\nabla_X Z) = 0")
+            st.markdown(L("**Step 4:** Remaining terms give the covariant derivative of torsion:", "**Adim 4:** Kalan terimler torsiyonun kovariant turevini verir:"))
+            st.latex(r"(\nabla_X T)(Y,Z) = \nabla_X(T(Y,Z)) - T(\nabla_X Y, Z) - T(Y, \nabla_X Z)")
+            st.markdown(L("**Step 5:** Collecting all cyclic terms:", "**Adim 5:** Tum dongsel terimleri derle:"))
+            st.latex(r"\underset{X,Y,Z}{\mathfrak{S}} R(X,Y)Z = \underset{X,Y,Z}{\mathfrak{S}}\bigl[(\nabla_X T)(Y,Z) + T(T(X,Y),Z)\bigr] \qquad \square")
+            st.info(L(
+                "**Special case:** If $T=0$ (torsion-free / Levi-Civita connection): $\\mathfrak{S} R(X,Y)Z = 0$",
+                "**Ozel durum:** Eger $T=0$ (torsiyonsuz / Levi-Civita baglanti): $\\mathfrak{S} R(X,Y)Z = 0$"
+            ))
+
+        with st.expander(L("📖 Mathematical Proof — Bianchi II", "📖 Matematiksel Kanit — Bianchi II"), expanded=False):
+            st.markdown(L("### Second Bianchi Identity", "### Ikinci Bianchi Kimligi"))
+            st.latex(r"\underset{X,Y,Z}{\mathfrak{S}}\,(\nabla_X R)(Y,Z)W = \underset{X,Y,Z}{\mathfrak{S}}\, R(X,T(Y,Z))W")
+            st.markdown(L("**Step 1:** Define the covariant derivative of $R$:", "**Adim 1:** $R$'nin kovariant turevini tanimla:"))
+            st.latex(r"(\nabla_X R)(Y,Z)W := \nabla_X(R(Y,Z)W) - R(\nabla_X Y,Z)W - R(Y,\nabla_X Z)W - R(Y,Z)\nabla_X W")
+            st.markdown(L("**Step 2:** Use the graded Jacobi identity for commutators:", "**Adim 2:** Komutatorler icin derecelendirilmis Jacobi kimligini kullan:"))
+            st.latex(r"[\nabla_X,[\nabla_Y,\nabla_Z]] + [\nabla_Y,[\nabla_Z,\nabla_X]] + [\nabla_Z,[\nabla_X,\nabla_Y]] = 0")
+            st.markdown(L("**Step 3:** Replace each commutator using $[\\nabla_X,\\nabla_Y] = R(X,Y) + \\nabla_{T(X,Y)}$:", "**Adim 3:** Her komutatorü $[\\nabla_X,\\nabla_Y] = R(X,Y) + \\nabla_{T(X,Y)}$ ile degistir:"))
+            st.latex(r"\nabla_X R(Y,Z) - R(\nabla_X Y, Z) - R(Y,\nabla_X Z) + R(X,T(Y,Z)) + \text{cycl} = 0")
+            st.markdown(L("**Step 4:** This is exactly the second Bianchi identity:", "**Adim 4:** Bu tam olarak ikinci Bianchi kimligidir:"))
+            st.latex(r"\underset{X,Y,Z}{\mathfrak{S}}\,(\nabla_X R)(Y,Z)W = \underset{X,Y,Z}{\mathfrak{S}}\, R(X,T(Y,Z))W \qquad \square")
+            st.info(L(
+                "**Special case:** If $T=0$: $\\mathfrak{S}\\,(\\nabla_X R)(Y,Z)W = 0$ — the classical Bianchi II.",
+                "**Ozel durum:** Eger $T=0$: $\\mathfrak{S}\\,(\\nabla_X R)(Y,Z)W = 0$ — klasik Bianchi II."
+            ))
+
+            st.download_button(
+                L("⬇ Download both Bianchi proofs as LaTeX", "⬇ Her iki Bianchi kanitini LaTeX olarak indir"),
+                '\\documentclass{amsart}\n\\usepackage{amsmath,amssymb,geometry}\n\\geometry{margin=2.5cm}\n\\begin{document}\n\\section*{Bianchi Identities}\n\n\\subsection*{First Bianchi Identity}\n\\begin{equation*}\n\\underset{X,Y,Z}{\\mathfrak{S}}\\, R(X,Y)Z\n= \\underset{X,Y,Z}{\\mathfrak{S}}\\bigl[(\\nabla_X T)(Y,Z) + T(T(X,Y),Z)\\bigr]\n\\end{equation*}\nwhere $\\mathfrak{S}$ denotes the cyclic sum over $X,Y,Z$.\n\n\\begin{proof}\n\\textbf{Step 1.} Expand $R(X,Y)Z$ using the definition:\n\\begin{equation*}\nR(X,Y)Z = \\nabla_X\\nabla_Y Z - \\nabla_Y\\nabla_X Z - \\nabla_{[X,Y]}Z\n\\end{equation*}\n\n\\textbf{Step 2.} Expand $T(X,Y) = \\nabla_X Y - \\nabla_Y X - [X,Y]$, so $[X,Y] = \\nabla_X Y - \\nabla_Y X - T(X,Y)$.\n\n\\textbf{Step 3.} Substitute into $\\nabla_{[X,Y]}Z$:\n\\begin{equation*}\n\\nabla_{[X,Y]}Z = \\nabla_{\\nabla_X Y - \\nabla_Y X - T(X,Y)}Z\n\\end{equation*}\n\n\\textbf{Step 4.} Take the cyclic sum $\\mathfrak{S}_{X,Y,Z}$. The second-order derivative terms\n$\\nabla_X\\nabla_Y Z$ appear in all three cyclic positions and cancel in pairs when\n$(\\nabla_X T)(Y,Z) = \\nabla_X(T(Y,Z)) - T(\\nabla_X Y, Z) - T(Y, \\nabla_X Z)$ is used.\n\n\\textbf{Step 5.} The remaining terms give exactly $(\\nabla_X T)(Y,Z) + T(T(X,Y),Z)$\ncyclically, completing the proof. $\\square$\n\n\\textbf{Special case (torsion-free connection):}\n\\begin{equation*}\nT = 0 \\implies \\underset{X,Y,Z}{\\mathfrak{S}}\\, R(X,Y)Z = 0\n\\end{equation*}\n\\end{proof}\n\n\\subsection*{Second Bianchi Identity}\n\\begin{equation*}\n\\underset{X,Y,Z}{\\mathfrak{S}}\\,(\\nabla_X R)(Y,Z)W\n= \\underset{X,Y,Z}{\\mathfrak{S}}\\, R(X,T(Y,Z))W\n\\end{equation*}\n\n\\begin{proof}\n\\textbf{Step 1.} Define $(\\nabla_X R)(Y,Z)W := \\nabla_X(R(Y,Z)W) - R(\\nabla_X Y,Z)W - R(Y,\\nabla_X Z)W - R(Y,Z)\\nabla_X W$.\n\n\\textbf{Step 2.} Apply the Jacobi identity for covariant derivatives:\n\\begin{equation*}\n[\\nabla_X,[\\nabla_Y,\\nabla_Z]] + [\\nabla_Y,[\\nabla_Z,\\nabla_X]] + [\\nabla_Z,[\\nabla_X,\\nabla_Y]] = 0\n\\end{equation*}\n\n\\textbf{Step 3.} Replace each commutator $[\\nabla_X,\\nabla_Y] = R(X,Y) + \\nabla_{T(X,Y)}$ (using torsion).\n\n\\textbf{Step 4.} Expand and collect cyclic terms to obtain the identity. $\\square$\n\\end{proof}\n\\end{document}',
+                file_name="bianchi_identities_proof.tex",
+                mime="text/plain",
+                key="dl_iv1",
+            )
+
+        st.markdown("---")
+        if st.button(L("▶ Prove both Bianchi identities with Jacopy", "▶ Jacopy ile her iki Bianchi kimligini kanitle"), key="ma_bianchi"):
             from jacopy.library.bianchi_problem import BianchiProblem
             prob = BianchiProblem(nabla, registry=reg_ma)
             res1 = prob.prove_first_bianchi(X_ma, Y_ma, W_ma)
             res2 = prob.prove_second_bianchi(X_ma, Y_ma, W_ma, Z_ma)
-            st.success(L("✓ Both Bianchi identities proved.", "✓ Her iki Bianchi kimliği kanıtlandı."))
+            st.success(L("✓ Both Bianchi identities proved.", "✓ Her iki Bianchi kimligi kanitlandi."))
             c1, c2 = st.columns(2)
             c1.metric("Bianchi I", f"ok={res1.ok}, {len(res1.lhs_steps)} lhs + {len(res1.rhs_steps)} rhs steps")
             c2.metric("Bianchi II", f"ok={res2.ok}, {len(res2.lhs_steps)} lhs + {len(res2.rhs_steps)} rhs steps")
 
     with proof_tabs4[2]:
         section_intro(
-            L("Cartan Structure Equations", "Cartan Yapı Denklemleri"),
+            L("Cartan Structure Equations", "Cartan Yapi Denklemleri"),
             L(
-                "On a local frame $(e_a)$ with coframe $(e^a)$, the **connection 1-forms** $\\omega^a_b$, "
-                "**torsion 2-forms** $T^a$, and **curvature 2-forms** $R^a_b$ satisfy Cartan's equations:",
-                "Yerel çerçeve $(e_a)$ ve kocerçeve $(e^a)$ üzerinde, **bağlantı 1-formları** $\\omega^a_b$, "
-                "**torsiyon 2-formları** $T^a$ ve **eğrilik 2-formları** $R^a_b$ Cartan denklemlerini sağlar:"
+                "On a local frame $(e_a)$ with coframe $(e^a)$, the connection, torsion and curvature "
+                "are encoded in differential forms satisfying two elegant equations.",
+                "Yerel cerceve $(e_a)$ ve kocerceve $(e^a)$ uzerinde, baglanti, torsiyon ve egrilik "
+                "iki zarif denklemi saglayan diferansiyel formlarda kodlanir."
             ),
-            r"T^a = de^a + \omega^a_b \wedge e^b \quad\text{(I)}, \qquad R^a_{\ b} = d\omega^a_b + \omega^a_c \wedge \omega^c_b \quad\text{(II)}"
+            r"T^a = de^a + \omega^a_{\;b} \wedge e^b \quad\text{(I)}, \qquad R^a_{\;b} = d\omega^a_{\;b} + \omega^a_{\;c} \wedge \omega^c_{\;b} \quad\text{(II)}"
         )
+
+        with st.expander(L("📖 Mathematical Proof — Cartan I (Torsion)", "📖 Matematiksel Kanit — Cartan I (Torsiyon)"), expanded=False):
+            st.markdown(L("### First Cartan Structure Equation", "### Birinci Cartan Yapi Denklemi"))
+            st.latex(r"T^a = de^a + \omega^a_{\;b} \wedge e^b")
+            st.markdown(L("**Setup:** Connection 1-forms $\\omega^a_{\;b}$ defined by $\\nabla_X e_b = \\omega^a_{\;b}(X)\,e_a$.",
+                          "**Kurulum:** Baglanti 1-formlari $\\omega^a_{\;b}$, $\\nabla_X e_b = \\omega^a_{\;b}(X)\,e_a$ ile tanimlanir."))
+            st.markdown(L("**Step 1:** Compute $de^a(X,Y)$ using the invariant formula:", "**Adim 1:** Invariant formulu ile $de^a(X,Y)$'yi hesapla:"))
+            st.latex(r"de^a(X,Y) = X(e^a(Y)) - Y(e^a(X)) - e^a([X,Y])")
+            st.markdown(L("**Step 2:** Compute $(\\omega^a_{\;b}\\wedge e^b)(X,Y)$:", "**Adim 2:** $(\\omega^a_{\;b}\\wedge e^b)(X,Y)$'yi hesapla:"))
+            st.latex(r"(\omega^a_{\;b}\wedge e^b)(X,Y) = \omega^a_{\;b}(X)e^b(Y) - \omega^a_{\;b}(Y)e^b(X)")
+            st.markdown(L("**Step 3:** Add and recognize $\\nabla_X Y = \\omega^a_{\;b}(X)e^b(Y)\cdot e_a + ...$:", "**Adim 3:** Topla ve $\\nabla$ tanimi tani:"))
+            st.latex(r"(de^a + \omega^a_{\;b}\wedge e^b)(X,Y) = e^a(\nabla_X Y - \nabla_Y X - [X,Y]) = T^a(X,Y) \qquad \square")
+
+        with st.expander(L("📖 Mathematical Proof — Cartan II (Curvature)", "📖 Matematiksel Kanit — Cartan II (Egrilik)"), expanded=False):
+            st.markdown(L("### Second Cartan Structure Equation", "### Ikinci Cartan Yapi Denklemi"))
+            st.latex(r"R^a_{\;b} = d\omega^a_{\;b} + \omega^a_{\;c} \wedge \omega^c_{\;b}")
+            st.markdown(L("**Step 1:** Compute $d\\omega^a_{\;b}(X,Y)$:", "**Adim 1:** $d\\omega^a_{\;b}(X,Y)$'yi hesapla:"))
+            st.latex(r"d\omega^a_{\;b}(X,Y) = X(\omega^a_{\;b}(Y)) - Y(\omega^a_{\;b}(X)) - \omega^a_{\;b}([X,Y])")
+            st.markdown(L("**Step 2:** Compute $(\\omega^a_{\;c}\\wedge\\omega^c_{\;b})(X,Y)$:", "**Adim 2:** $(\\omega^a_{\;c}\\wedge\\omega^c_{\;b})(X,Y)$'yi hesapla:"))
+            st.latex(r"(\omega^a_{\;c}\wedge\omega^c_{\;b})(X,Y) = \omega^a_{\;c}(X)\omega^c_{\;b}(Y) - \omega^a_{\;c}(Y)\omega^c_{\;b}(X)")
+            st.markdown(L("**Step 3:** Expand $R(X,Y)e_b = \\nabla_X(\\omega^c_{\;b}(Y)e_c) - \\nabla_Y(\\omega^c_{\;b}(X)e_c) - \\nabla_{[X,Y]}e_b$:", "**Adim 3:** $R(X,Y)e_b$'yi ac:"))
+            st.latex(r"R^a_{\;b}(X,Y) = X(\omega^a_{\;b}(Y)) - Y(\omega^a_{\;b}(X)) - \omega^a_{\;b}([X,Y]) + \omega^a_{\;c}(X)\omega^c_{\;b}(Y) - \omega^a_{\;c}(Y)\omega^c_{\;b}(X)")
+            st.markdown(L("**Step 4:** This is exactly $d\\omega^a_{\;b} + \\omega^a_{\;c}\\wedge\\omega^c_{\;b}$:", "**Adim 4:** Bu tam olarak $d\\omega^a_{\;b} + \\omega^a_{\;c}\\wedge\\omega^c_{\;b}$'dir:"))
+            st.latex(r"R^a_{\;b} = d\omega^a_{\;b} + \omega^a_{\;c} \wedge \omega^c_{\;b} \qquad \square")
+
+            st.download_button(
+                L("⬇ Download Cartan structure equations proof as LaTeX", "⬇ Cartan yapi denklemleri kanitini LaTeX olarak indir"),
+                '\\documentclass{amsart}\n\\usepackage{amsmath,amssymb,geometry}\n\\geometry{margin=2.5cm}\n\\begin{document}\n\\section*{Cartan Structure Equations}\n\nLet $(e_a)$ be a local frame on $M$, $(e^a)$ the dual coframe, $\\omega^a_{\\ b}$ the connection 1-forms,\n$T^a$ the torsion 2-forms, and $R^a_{\\ b}$ the curvature 2-forms.\n\n\\subsection*{First Cartan Structure Equation (Torsion)}\n\\begin{equation*}\nT^a = de^a + \\omega^a_{\\ b} \\wedge e^b\n\\end{equation*}\n\n\\begin{proof}\n\\textbf{Step 1.} The torsion 2-form $T^a$ is defined by $T^a(X,Y) = e^a(T(X,Y))$.\n\n\\textbf{Step 2.} The connection 1-form $\\omega^a_{\\ b}$ is defined by\n$\\nabla_X e_b = \\omega^a_{\\ b}(X)\\,e_a$ (Einstein summation).\n\n\\textbf{Step 3.} Compute $de^a(X,Y) = X(e^a(Y)) - Y(e^a(X)) - e^a([X,Y])$\nusing the invariant formula for exterior derivative.\n\n\\textbf{Step 4.} Compute $(\\omega^a_{\\ b}\\wedge e^b)(X,Y) = \\omega^a_{\\ b}(X)e^b(Y) - \\omega^a_{\\ b}(Y)e^b(X)$.\n\n\\textbf{Step 5.} Add Steps 3 and 4:\n\\begin{align*}\n(de^a + \\omega^a_{\\ b}\\wedge e^b)(X,Y)\n&= X(e^a(Y)) - Y(e^a(X)) - e^a([X,Y]) \\\\\n&\\quad + \\omega^a_{\\ b}(X)e^b(Y) - \\omega^a_{\\ b}(Y)e^b(X) \\\\\n&= e^a(\\nabla_X Y - \\nabla_Y X - [X,Y]) = T^a(X,Y). \\qquad\\square\n\\end{align*}\n\\end{proof}\n\n\\subsection*{Second Cartan Structure Equation (Curvature)}\n\\begin{equation*}\nR^a_{\\ b} = d\\omega^a_{\\ b} + \\omega^a_{\\ c} \\wedge \\omega^c_{\\ b}\n\\end{equation*}\n\n\\begin{proof}\n\\textbf{Step 1.} The curvature 2-form $R^a_{\\ b}$ is defined by $R(X,Y)e_b = R^a_{\\ b}(X,Y)\\,e_a$.\n\n\\textbf{Step 2.} Compute $d\\omega^a_{\\ b}(X,Y) = X(\\omega^a_{\\ b}(Y)) - Y(\\omega^a_{\\ b}(X)) - \\omega^a_{\\ b}([X,Y])$.\n\n\\textbf{Step 3.} Compute $(\\omega^a_{\\ c}\\wedge\\omega^c_{\\ b})(X,Y) = \\omega^a_{\\ c}(X)\\omega^c_{\\ b}(Y) - \\omega^a_{\\ c}(Y)\\omega^c_{\\ b}(X)$.\n\n\\textbf{Step 4.} Expand $R(X,Y)e_b = \\nabla_X\\nabla_Y e_b - \\nabla_Y\\nabla_X e_b - \\nabla_{[X,Y]}e_b$\nusing $\\nabla_X e_b = \\omega^c_{\\ b}(X)e_c$.\n\n\\textbf{Step 5.} Collecting terms gives exactly $d\\omega^a_{\\ b}(X,Y) + (\\omega^a_{\\ c}\\wedge\\omega^c_{\\ b})(X,Y)$. $\\square$\n\\end{proof}\n\\end{document}',
+                file_name="cartan_structure_equations_proof.tex",
+                mime="text/plain",
+                key="dl_iv2",
+            )
+
+        st.markdown("---")
         eq_choice = st.radio(L("Equation","Denklem"), ["Cartan I", "Cartan II"], key="ma_eq", horizontal=True)
-        if st.button(L("▶ Prove", "▶ Kanıtla"), key="ma_cartan"):
+        if st.button(L("▶ Prove with Jacopy", "▶ Jacopy ile Kanitle"), key="ma_cartan"):
             from jacopy.calculus.local_frame import LocalFrame
             from jacopy.library.cartan_structure import CartanStructureProblem
             F_ma = LocalFrame("F", dim=3)
@@ -1462,29 +1587,58 @@ with tabs[3]:
             st.write(f"RHS: `{to_ascii(rhs)}`")
             if res.ok:
                 st.success(L(f"✓ {eq_choice} proved in {len(res.steps)} steps.",
-                             f"✓ {eq_choice} {len(res.steps)} adımda kanıtlandı."))
+                             f"✓ {eq_choice} {len(res.steps)} adimda kanitlandi."))
 
     with proof_tabs4[3]:
         section_intro(
-            L("Difference of Two Connections", "İki Bağlantının Farkı"),
+            L("Difference of Two Connections", "Iki Baglantiinin Farki"),
             L(
                 "Given two connections $\\nabla, \\nabla'$, their difference "
                 "$\\Delta(\\nabla,\\nabla')(X,Y) := \\nabla_X Y - \\nabla'_X Y$ "
-                "is **$C^\\infty(M)$-linear** in both $X$ and $Y$ — i.e., a $(1,2)$-tensor. "
-                "This follows purely from the linearity axioms of both connections.",
-                "İki bağlantı $\\nabla, \\nabla'$ verildiğinde, farkları "
+                "is **$C^\\infty(M)$-linear** in both $X$ and $Y$ — i.e., a $(1,2)$-tensor.",
+                "Iki baglanti $\\nabla, \\nabla'$ verildiginde, farklari "
                 "$\\Delta(\\nabla,\\nabla')(X,Y) := \\nabla_X Y - \\nabla'_X Y$, "
-                "hem $X$ hem $Y$'de **$C^\\infty(M)$-doğrusal**dır — yani bir $(1,2)$-tensördür. "
-                "Bu, yalnızca her iki bağlantının doğrusallık aksiyomlarından gelir."
+                "hem $X$ hem $Y$'de **$C^\\infty(M)$-dogrusaldirlar** — yani bir $(1,2)$-tensordurlar."
             ),
             r"\Delta(\nabla,\nabla')(fX,Y) = f\,\Delta(\nabla,\nabla')(X,Y)"
         )
+
+        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanit"), expanded=False):
+            st.markdown(L("### Theorem: $\\Delta$ is a Tensor", "### Teorem: $\\Delta$ bir Tensordur"))
+            st.markdown(L("**$C^\\infty$-linearity in $X$:**", "**$X$'de $C^\\infty$-dogrusallık:**"))
+            st.latex(r"\Delta(fX,Y) = \nabla_{fX}Y - \nabla'_{fX}Y = f\nabla_X Y - f\nabla'_X Y = f\,\Delta(X,Y) \qquad \checkmark")
+            st.caption(L("Uses axiom 2 ($C^\infty$-linearity in $X$) for both connections.",
+                         "Her iki baglanti icin aksiyom 2'yi kullanir."))
+            st.markdown(L("**$C^\\infty$-linearity in $Y$:**", "**$Y$'de $C^\\infty$-dogrusallık:**"))
+            st.latex(r"\Delta(X,fY) = \nabla_X(fY) - \nabla'_X(fY)")
+            st.latex(r"= \bigl(X(f)Y + f\nabla_X Y\bigr) - \bigl(X(f)Y + f\nabla'_X Y\bigr)")
+            st.latex(r"= f(\nabla_X Y - \nabla'_X Y) = f\,\Delta(X,Y) \qquad \checkmark")
+            st.caption(L("Uses Leibniz rule (axiom 4) for both connections — the $X(f)Y$ terms cancel!",
+                         "Her iki baglanti icin Leibniz kuralini kullanir — $X(f)Y$ terimleri iptal olur!"))
+            st.markdown(L("**Conclusion:**", "**Sonuc:**"))
+            st.latex(r"\Delta \in \Omega^1(M)\otimes\mathrm{End}(TM) \quad (\text{a (1,2)-tensor}) \qquad \square")
+            st.info(L(
+                "**Geometric meaning:** The space of all connections on $M$ is an **affine space** "
+                "modelled on the vector space $\\Omega^1(M)\\otimes\\mathrm{End}(TM)$. "
+                "Any two connections differ by a tensor.",
+                "**Geometrik anlam:** $M$ uzerindeki tum baglantilar kümesi, "
+                "$\\Omega^1(M)\\otimes\\mathrm{End}(TM)$ vektor uzayı uzerinde bir **affin uzaydır**. "
+                "Herhangi iki baglanti bir tensorle farklilasir."
+            ))
+            st.download_button(
+                L("⬇ Download as LaTeX (.tex)", "⬇ LaTeX olarak indir (.tex)"),
+                "\\documentclass{amsart}\n\\usepackage{amsmath,amssymb,geometry}\n\\geometry{margin=2.5cm}\n\\begin{document}\n\\section*{Difference of Two Connections is a Tensor}\n\n\\textbf{Theorem.} Let $\\nabla, \\nabla'$ be two affine connections on $M$. Then\n\\begin{equation*}\n\\Delta(\\nabla,\\nabla')(X,Y) := \\nabla_X Y - \\nabla'_X Y\n\\end{equation*}\nis $C^\\infty(M)$-linear (a tensor) in both $X$ and $Y$.\n\n\\begin{proof}\n\\textbf{$C^\\infty$-linearity in $X$:}\n\\begin{align*}\n\\Delta(fX,Y) &= \\nabla_{fX}Y - \\nabla'_{fX}Y \\\\\n&= f\\nabla_X Y - f\\nabla'_X Y \\quad \\text{(axiom 2 for both connections)}\\\\\n&= f\\,\\Delta(X,Y). \\qquad\\checkmark\n\\end{align*}\n\n\\textbf{$C^\\infty$-linearity in $Y$:}\n\\begin{align*}\n\\Delta(X,fY) &= \\nabla_X(fY) - \\nabla'_X(fY) \\\\\n&= \\bigl(X(f)Y + f\\nabla_X Y\\bigr) - \\bigl(X(f)Y + f\\nabla'_X Y\\bigr) \\quad \\text{(Leibniz for both)}\\\\\n&= f(\\nabla_X Y - \\nabla'_X Y) = f\\,\\Delta(X,Y). \\qquad\\checkmark\n\\end{align*}\n\nTherefore $\\Delta$ is a $(1,2)$-tensor field on $M$. $\\square$\n\n\\textbf{Converse:} Any $(1,2)$-tensor $A$ gives a new connection $\\nabla' := \\nabla - A$,\nso the space of connections is an affine space modelled on $\\Omega^1(M)\\otimes\\mathrm{End}(TM)$.\n\\end{proof}\n\\end{document}",
+                file_name="difference_connections_proof.tex",
+                mime="text/plain",
+                key="dl_iv3",
+            )
+
+        st.markdown("---")
         nabla2 = AffineConnection("∇'")
         delta = Sum(nabla.eval(X_ma, Y_ma), Neg(nabla2.eval(X_ma, Y_ma)))
         st.write(f"**Δ(∇,∇')(X,Y) =** `{to_ascii(delta)}`")
         st.latex(to_latex(delta))
 
-# ══════════════════════════════════════════════════════════════
 # TAB V — Algebroid Calculus
 # ══════════════════════════════════════════════════════════════
 with tabs[4]:
