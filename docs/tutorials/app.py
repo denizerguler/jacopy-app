@@ -13,15 +13,7 @@ st.set_page_config(
     layout="wide",
     page_icon="∂",
 )
-st.logo("images/jacopy_logo.png", size="large")
-
-st.html("""
-<style>
-    [data-testid="stLogo"] {
-        height: 4rem;
-    }
-</style>
-""")
+st.logo("jacopy_logo.png", size="large")
 
 
 # ── Language ──────────────────────────────────────────────────
