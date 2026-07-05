@@ -1673,56 +1673,6 @@ with tabs[4]:
             ),
             r"K_V = -\mathcal{L}_V + d\iota_V, \qquad \tilde{K}_\eta = -\tilde{\mathcal{L}}_\eta + \tilde{d}\tilde{\iota}_\eta"
         )
-        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanıt"), expanded=False):
-            st.markdown(L("### K Operator (Form Side)", "### K Operatörü (Form Tarafı)"))
-            st.markdown(L(
-                "The Cartan magic formula says $\\mathcal{{L}}_V = d\\iota_V + \\iota_V d$. "
-                "The **remainder** $K_V$ measures by how much $d\\iota_V$ and $\\mathcal{{L}}_V - \\iota_V d$ differ:",
-                "Cartan magic formülü $\\mathcal{{L}}_V = d\\iota_V + \\iota_V d$. "
-                "**Artık** $K_V$, $d\\iota_V$ ile $\\mathcal{{L}}_V - \\iota_V d$'nin ne kadar farklı olduğunu ölçer:"
-            ))
-            st.latex(r"K_V := -\mathcal{{L}}_V + d \circ \iota_V = -(\iota_V d)")
-            st.markdown(L("**Key property:** $K_V$ is a degree-0 graded derivation:", "**Temel özellik:** $K_V$ derecesi-0 derecelendirilmiş türevdir:"))
-            st.latex(r"K_V(\omega \wedge \eta) = K_V(\omega) \wedge \eta + \omega \wedge K_V(\eta)")
-            st.markdown(L("**On 0-forms $f$:** Since $\\iota_V f = 0$ and $\\mathcal{{L}}_V f = V(f)$:", "**0-formlarda $f$:** $\\iota_V f = 0$ ve $\\mathcal{{L}}_V f = V(f)$ olduğundan:"))
-            st.latex(r"K_V(f) = -\mathcal{{L}}_V f + d(\iota_V f) = -V(f) + 0 = -V(f)")
-            st.markdown("---")
-            st.markdown(L("### K̃ Operator (Multivector Side)", "### K̃ Operatörü (Çokvektör Tarafı)"))
-            st.markdown(L(
-                "The tilde magic formula says $\\tilde{{\\mathcal{{L}}}}_\\eta = \\tilde{{d}}\\tilde{{\\iota}}_\\eta + \\tilde{{\\iota}}_\\eta\\tilde{{d}}$. "
-                "The **tilde remainder** $\\tilde{{K}}_\\eta$ is its analog:",
-                "Tilde magic formülü $\\tilde{{\\mathcal{{L}}}}_\\eta = \\tilde{{d}}\\tilde{{\\iota}}_\\eta + \\tilde{{\\iota}}_\\eta\\tilde{{d}}$. "
-                "**Tilde artığı** $\\tilde{{K}}_\\eta$ bunun analoğudur:"
-            ))
-            st.latex(r"\tilde{{K}}_\eta := -\tilde{{\mathcal{{L}}}}_\eta + \tilde{{d}} \circ \tilde{{\iota}}_\eta = -(\tilde{{\iota}}_\eta \tilde{{d}})")
-            st.markdown(L("**Symmetry:** $K$ and $\\tilde{{K}}$ are **dual** to each other:", "**Simetri:** $K$ ve $\\tilde{{K}}$ birbirinin **duali**dir:"))
-            st.latex(r"K \leftrightarrow \tilde{{K}}, \quad d \leftrightarrow \tilde{{d}}, \quad \iota \leftrightarrow \tilde{{\iota}}, \quad \mathcal{{L}} \leftrightarrow \tilde{{\mathcal{{L}}}}")
-            st.markdown(L("**Both operators appear in the derivator identities §3.1.5** — see tabs (1) and (1').",
-                          "**Her iki operatör de §3.1.5 derivator kimliklerinde görünür** — (1) ve (1') sekmelerine bakın."))
-            latex_v1 = '\\documentclass{{amsart}}\n\\usepackage{{amsmath,amssymb,geometry}}\n\\geometry{{margin=2.5cm}}\n\\begin{{document}}\n\\section*{{K and K\\tilde{{K}} Operators}}\n\\subsection*{{K Operator (Form Side)}}\n\\begin{{equation*}}\nK_V := -\\mathcal{{L}}_V + d \\circ \\iota_V = -(\\iota_V d)\n\\end{{equation*}}\n\\textbf{{Key property:}} $K_V$ is a degree-0 derivation:\n\\begin{{equation*}}\nK_V(\\omega \\wedge \\eta) = K_V(\\omega) \\wedge \\eta + \\omega \\wedge K_V(\\eta)\n\\end{{equation*}}\n\\subsection*{{K\\tilde{{K}} Operator (Multivector Side)}}\n\\begin{{equation*}}\n\\tilde{{K}}_\\eta := -\\tilde{{\\mathcal{{L}}}}_\\eta + \\tilde{{d}} \\circ \\tilde{{\\iota}}_\\eta = -(\\tilde{{\\iota}}_\\eta \\tilde{{d}})\n\\end{{equation*}}\n\\textbf{{Duality:}} $K \\leftrightarrow \\tilde{{K}}$, $d \\leftrightarrow \\tilde{{d}}$, $\\iota \\leftrightarrow \\tilde{{\\iota}}$.\n\\end{{document}}'
-            st.download_button(
-                L("⬇ Download as LaTeX (.tex)", "⬇ LaTeX olarak indir (.tex)"),
-                latex_v1,
-                file_name="k_ktilde_operators_proof.tex",
-                mime="text/plain",
-                key="dl_v1",
-            )
-        st.markdown("---")
-        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanıt"), expanded=False):
-            st.markdown(L("### K Operator (Form Side)", "### K Operatörü (Form Tarafı)"))
-            st.latex(r"K_V := -\mathcal{L}_V + d \circ \iota_V = -(\iota_V \circ d)")
-            st.markdown(L("**On 0-forms:** $K_V(f) = -V(f)$", "**0-formlarda:** $K_V(f) = -V(f)$"))
-            st.markdown("---")
-            st.markdown(L("### K̃ Operator (Multivector Side)", "### K̃ Operatörü (Çokvektör Tarafı)"))
-            st.latex(r"\tilde{K}_\eta := -\tilde{\mathcal{L}}_\eta + \tilde{d} \circ \tilde{\iota}_\eta = -(\tilde{\iota}_\eta \circ \tilde{d})")
-            st.markdown(L(
-                "**Duality:** $K\\leftrightarrow\\tilde{K}$, $d\\leftrightarrow\\tilde{d}$, $\\iota\\leftrightarrow\\tilde{\\iota}$",
-                "**Dualite:** $K\\leftrightarrow\\tilde{K}$, $d\\leftrightarrow\\tilde{d}$"
-            ))
-            st.download_button(L("⬇ Download as LaTeX","⬇ LaTeX olarak indir"),
-                "\\documentclass{amsart}\n\\usepackage{amsmath}\n\\begin{document}\n\\section*{K and K-tilde Operators}\n$K_V:=-\\mathcal{L}_V+d\\circ\\iota_V$,\n$\\tilde{K}_\\eta:=-\\tilde{\\mathcal{L}}_\\eta+\\tilde{d}\\circ\\tilde{\\iota}_\\eta$.\nDuality: $K\\leftrightarrow\\tilde{K}$, $d\\leftrightarrow\\tilde{d}$.\n\\end{document}",
-                file_name="k_ktilde.tex", mime="text/plain", key="dl_v1")
-        st.markdown("---")
         from jacopy.calculus.cartan_remainder import K
         from jacopy.calculus.tilde import K_tilde, tilde_d
         reg5 = PropertyRegistry()
@@ -1749,57 +1699,6 @@ with tabs[4]:
             ),
             r"\tilde{\mathcal{L}}_\eta = \tilde{d}\tilde{\iota}_\eta + \tilde{\iota}_\eta\tilde{d}"
         )
-        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanıt"), expanded=False):
-            st.markdown(L("### Proof of Tilde Magic Formula", "### Tilde Magic Formülü Kanıtı"))
-            st.markdown(L(
-                "Analogous to Cartan's proof that $[d,\\iota_X]=\\mathcal{{L}}_X$, "
-                "but on the multivector side with $\\tilde{{d}} = [\\pi,\\cdot]_{{SN}}$.",
-                "Cartan'ın $[d,\\iota_X]=\\mathcal{{L}}_X$ kanıtına analogdur, "
-                "ama $\\tilde{{d}} = [\\pi,\\cdot]_{{SN}}$ ile çokvektör tarafında."
-            ))
-            st.markdown(L("**Step 1:** Recall $\\tilde{{d}}V = [\\pi,V]_{{SN}}$ and $\\tilde{{\\iota}}_\\eta V = [\\eta,V]_{{SN}}$:",
-                          "**Adım 1:** $\\tilde{{d}}V = [\\pi,V]_{{SN}}$ ve $\\tilde{{\\iota}}_\\eta V = [\\eta,V]_{{SN}}$'i hatırla:"))
-            st.latex(r"(\tilde{{d}}\tilde{{\iota}}_\eta + \tilde{{\iota}}_\eta\tilde{{d}})V = [\pi,[\eta,V]_{{SN}}]_{{SN}} + [\eta,[\pi,V]_{{SN}}]_{{SN}}")
-            st.markdown(L("**Step 2:** Apply the graded Jacobi identity for the SN bracket:",
-                          "**Adım 2:** SN bracket için derecelendirilmiş Jacobi kimliğini uygula:"))
-            st.latex(r"[\pi,[\eta,V]_{{SN}}]_{{SN}} - [[\pi,\eta]_{{SN}},V]_{{SN}} + (-1)^{{|\pi||\eta|}}[\eta,[\pi,V]_{{SN}}]_{{SN}}  = 0")
-            st.markdown(L("**Step 3:** Since $|\\pi|=1$ and $|\\eta|=1$, $(-1)^{{|\\pi||\\eta|}} = -1$:",
-                          "**Adım 3:** $|\\pi|=1$ ve $|\\eta|=1$ olduğundan $(-1)^{{|\\pi||\\eta|}} = -1$:"))
-            st.latex(r"[\pi,[\eta,V]_{{SN}}]_{{SN}} + [\eta,[\pi,V]_{{SN}}]_{{SN}} = [[\pi,\eta]_{{SN}},V]_{{SN}}")
-            st.markdown(L("**Step 4:** But $[\\pi,\\eta]_{{SN}} = \\tilde{{\\mathcal{{L}}}}_\\pi\\eta$ by definition of tilde Lie derivative:",
-                          "**Adım 4:** Ama $[\\pi,\\eta]_{{SN}} = \\tilde{{\\mathcal{{L}}}}_\\pi\\eta$, tilde Lie türevinin tanımından:"))
-            st.latex(r"[[\pi,\eta]_{{SN}},V]_{{SN}} = [\tilde{{\mathcal{{L}}}}_\pi\eta, V]_{{SN}} = \tilde{{\mathcal{{L}}}}_\eta V")
-            st.markdown(L("**Step 5:** Therefore:", "**Adım 5:** Dolayısıyla:"))
-            st.latex(r"\tilde{{d}}\tilde{{\iota}}_\eta V + \tilde{{\iota}}_\eta\tilde{{d}}V = \tilde{{\mathcal{{L}}}}_\eta V \qquad \square")
-            latex_v2 = '\\documentclass{{amsart}}\n\\usepackage{{amsmath,amssymb,geometry}}\n\\geometry{{margin=2.5cm}}\n\\begin{{document}}\n\\section*{{Tilde Magic Formula}}\n\\begin{{proof}}\n\\textbf{{Step 1.}} Recall $\\tilde{{d}}V = [\\pi,V]_{{SN}}$ and $\\tilde{{\\iota}}_\\eta V = [\\eta,V]_{{SN}}$:\n\\begin{{equation*}}\n(\\tilde{{d}}\\tilde{{\\iota}}_\\eta + \\tilde{{\\iota}}_\\eta\\tilde{{d}})V = [\\pi,[\\eta,V]_{{SN}}]_{{SN}} + [\\eta,[\\pi,V]_{{SN}}]_{{SN}}\n\\end{{equation*}}\n\\textbf{{Step 2.}} Graded Jacobi identity for SN:\n\\begin{{equation*}}\n[\\pi,[\\eta,V]]_{{SN}} + [\\eta,[\\pi,V]]_{{SN}} = [[\\pi,\\eta]_{{SN}},V]_{{SN}}\n\\end{{equation*}}\n\\textbf{{Step 3.}} By definition $[\\pi,\\eta]_{{SN}} = \\tilde{{\\mathcal{{L}}}}_\\pi\\eta$:\n\\begin{{equation*}}\n= \\tilde{{\\mathcal{{L}}}}_\\eta V \\qquad \\square\n\\end{{equation*}}\n\\end{{proof}}\n\\end{{document}}'
-            st.download_button(
-                L("⬇ Download as LaTeX (.tex)", "⬇ LaTeX olarak indir (.tex)"),
-                latex_v2,
-                file_name="tilde_magic_proof.tex",
-                mime="text/plain",
-                key="dl_v2",
-            )
-        st.markdown("---")
-        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanıt"), expanded=False):
-            st.markdown(L("### Proof of Tilde Magic Formula", "### Tilde Magic Formülü Kanıtı"))
-            st.markdown(L(
-                "**Step 1:** Expand using $\\tilde{d}V=[\\pi,V]_{SN}$, $\\tilde{\\iota}_\\eta V=[\\eta,V]_{SN}$:",
-                "**Adım 1:** $\\tilde{d}V=[\\pi,V]_{SN}$, $\\tilde{\\iota}_\\eta V=[\\eta,V]_{SN}$ kullan:"
-            ))
-            st.latex(r"(\tilde{d}\tilde{\iota}_\eta + \tilde{\iota}_\eta\tilde{d})V = [\pi,[\eta,V]_{SN}]_{SN} + [\eta,[\pi,V]_{SN}]_{SN}")
-            st.markdown(L(
-                "**Step 2:** Graded Jacobi for SN ($|\\pi|=|\\eta|=1$):",
-                "**Adım 2:** SN için derecelendirilmiş Jacobi ($|\\pi|=|\\eta|=1$):"
-            ))
-            st.latex(r"[\pi,[\eta,V]]_{SN}+[\eta,[\pi,V]]_{SN} = [[\pi,\eta]_{SN},V]_{SN}")
-            st.markdown(L(
-                "**Step 3:** By definition $[[\\pi,\\eta]_{SN},V]_{SN} = \\tilde{\\mathcal{L}}_\\eta V$ $\\square$",
-                "**Adım 3:** Tanımdan $[[\\pi,\\eta]_{SN},V]_{SN} = \\tilde{\\mathcal{L}}_\\eta V$ $\\square$"
-            ))
-            st.download_button(L("⬇ Download as LaTeX","⬇ LaTeX olarak indir"),
-                "\\documentclass{amsart}\n\\begin{document}\n\\section*{Tilde Magic Formula}\n\\begin{proof}\nStep 1: expand using tilde-d and tilde-iota definitions.\nStep 2: apply graded Jacobi for SN bracket.\nStep 3: identify result as tilde Lie derivative. $\\square$\n\\end{proof}\n\\end{document}",
-                file_name="tilde_magic_proof.tex", mime="text/plain", key="dl_v2")
-        st.markdown("---")
         if st.button(L("▶ Prove tilde magic formula", "▶ Tilde magic formülünü kanıtla"), key="alg_magic"):
             from jacopy.calculus.tilde import (tilde_interior, tilde_d, tilde_lie,
                 tilde_intrinsic_engine, prove_tilde_cartan_relation)
@@ -1831,73 +1730,6 @@ with tabs[4]:
             ),
             r"\mathcal{D}^{T^*M}_{\mathcal{L}_U}(\eta,\mu) = \mathcal{L}_{\tilde{K}_\eta U}\mu + K_{\tilde{K}_\mu U}\eta"
         )
-        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanıt"), expanded=False):
-            st.markdown(L("### Derivator — Definition", "### Derivator — Tanım"))
-            st.markdown(L(
-                "For a bracket $[\\cdot,\\cdot]$ and a linear map $\\Phi$, "
-                "the **derivator** measures the failure of $\\Phi$ to be a derivation:",
-                "Bir bracket $[\\cdot,\\cdot]$ ve doğrusal dönüşüm $\\Phi$ için "
-                "**derivator**, $\\Phi$'nin bir türev olmamasını ölçer:"
-            ))
-            st.latex(r"\mathcal{{D}}_\Phi(\eta,\mu) := \Phi[\eta,\mu] - [\Phi\eta,\mu] - [\eta,\Phi\mu]")
-            st.markdown(L("### Identity (1) — Form Side (109 steps)", "### Kimlik (1) — Form Tarafı (109 adım)"))
-            st.latex(r"\mathcal{{D}}^{{T^*M}}_{{\mathcal{{L}}_U}}(\eta,\mu) = \mathcal{{L}}_{{\tilde{{K}}_\eta U}}\mu + K_{{\tilde{{K}}_\mu U}}\eta")
-            st.markdown(L(
-                "**What this says:** The failure of the Lie derivative $\\mathcal{{L}}_U$ to be a derivation "
-                "of the Koszul bracket on $T^*M$ is expressed in terms of the $K$ and $\\tilde{{K}}$ operators.",
-                "**Anlamı:** Lie türevi $\\mathcal{{L}}_U$'nun $T^*M$ üzerindeki Koszul bracket'ın "
-                "bir türevi olmaması, $K$ ve $\\tilde{{K}}$ operatörleri cinsinden ifade edilir."
-            ))
-            st.markdown(L("**Step 1:** Expand the left-hand side using the derivator definition:",
-                          "**Adım 1:** Sol tarafı derivator tanımını kullanarak aç:"))
-            st.latex(r"\mathcal{{D}}^{{T^*M}}_{{\mathcal{{L}}_U}}(\eta,\mu) = \mathcal{{L}}_U[\eta,\mu]_K - [\mathcal{{L}}_U\eta,\mu]_K - [\eta,\mathcal{{L}}_U\mu]_K")
-            st.markdown(L("**Step 2:** Expand each Koszul bracket using $[\\alpha,\\beta]_K = \\mathcal{{L}}_{{\\pi^\\sharp\\alpha}}\\beta - \\mathcal{{L}}_{{\\pi^\\sharp\\beta}}\\alpha - d\\langle\\pi^\\sharp\\alpha,\\beta\\rangle$:",
-                          "**Adım 2:** Her Koszul bracket'ı formülüyle aç:"))
-            st.latex(r"[\alpha,\beta]_K = \mathcal{{L}}_{{\pi^\sharp\alpha}}\beta - \mathcal{{L}}_{{\pi^\sharp\beta}}\alpha - d\langle\pi^\sharp\alpha,\beta\rangle")
-            st.markdown(L("**Step 3:** Commute $\\mathcal{{L}}_U$ past $\\pi^\\sharp$ using the torsion of the Koszul connection:",
-                          "**Adım 3:** Koszul bağlantısının torsiyonunu kullanarak $\\mathcal{{L}}_U$'yu $\\pi^\\sharp$'ın yanından geçir:"))
-            st.latex(r"\mathcal{{L}}_U(\pi^\sharp\eta) - \pi^\sharp(\mathcal{{L}}_U\eta) = \tilde{{K}}_\eta U \quad (\text{{key identity}})")
-            st.markdown(L("**Step 4:** After 109 expansion steps, all terms collect into:",
-                          "**Adım 4:** 109 açılım adımından sonra tüm terimler şuna toplanır:"))
-            st.latex(r"= \mathcal{{L}}_{{\tilde{{K}}_\eta U}}\mu + K_{{\tilde{{K}}_\mu U}}\eta \qquad \square")
-            st.caption(L("The 109 steps are handled automatically by Jacopy's engine. Click the button below to run the full proof.",
-                         "109 adım Jacopy'nin motoru tarafından otomatik olarak işlenir. Tam kanıtı çalıştırmak için aşağıdaki butona tıklayın."))
-            latex_v3 = '\\documentclass{{amsart}}\n\\usepackage{{amsmath,amssymb,geometry}}\n\\geometry{{margin=2.5cm}}\n\\begin{{document}}\n\\section*{{Derivator Identity (1) --- Form Side}}\n\\textbf{{Derivator definition:}}\n\\begin{{equation*}}\n\\mathcal{{D}}_\\Phi(\\eta,\\mu) := \\Phi[\\eta,\\mu] - [\\Phi\\eta,\\mu] - [\\eta,\\Phi\\mu]\n\\end{{equation*}}\n\\textbf{{Identity (1):}}\n\\begin{{equation*}}\n\\mathcal{{D}}^{{T^*M}}_{{\\mathcal{{L}}_U}}(\\eta,\\mu) = \\mathcal{{L}}_{{\\tilde{{K}}_\\eta U}}\\mu + K_{{\\tilde{{K}}_\\mu U}}\\eta\n\\end{{equation*}}\n\\begin{{proof}}\nExpand the LHS using the Koszul bracket formula\n$[\\alpha,\\beta]_K = \\mathcal{{L}}_{{\\pi^\\sharp\\alpha}}\\beta - \\mathcal{{L}}_{{\\pi^\\sharp\\beta}}\\alpha - d\\langle\\pi^\\sharp\\alpha,\\beta\\rangle$,\ncommute $\\mathcal{{L}}_U$ past $\\pi^\\sharp$ using the key identity\n$\\mathcal{{L}}_U(\\pi^\\sharp\\eta) - \\pi^\\sharp(\\mathcal{{L}}_U\\eta) = \\tilde{{K}}_\\eta U$,\nand collect all 109 terms to obtain the RHS. $\\square$\n\\end{{proof}}\n\\end{{document}}'
-            st.download_button(
-                L("⬇ Download as LaTeX (.tex)", "⬇ LaTeX olarak indir (.tex)"),
-                latex_v3,
-                file_name="derivator_identity_1_proof.tex",
-                mime="text/plain",
-                key="dl_v3",
-            )
-        st.markdown("---")
-        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanıt"), expanded=False):
-            st.markdown(L("### Derivator Definition", "### Derivator Tanımı"))
-            st.latex(r"\mathcal{D}_\Phi(\eta,\mu) := \Phi[\eta,\mu] - [\Phi\eta,\mu] - [\eta,\Phi\mu]")
-            st.markdown(L(
-                "Measures the failure of $\\Phi$ to be a derivation of the bracket $[\\cdot,\\cdot]$.",
-                "$\\Phi$'nin bracket'ın türevi olamamasını ölçer."
-            ))
-            st.markdown(L("### Identity (1) Key Steps", "### Kimlik (1) Temel Adımlar"))
-            st.latex(r"\mathcal{D}^{T^*M}_{\mathcal{L}_U}(\eta,\mu) = \mathcal{L}_{\tilde{K}_\eta U}\mu + K_{\tilde{K}_\mu U}\eta")
-            st.markdown(L(
-                "**Step 1:** Expand LHS using Koszul bracket $[\\alpha,\\beta]_K = \\mathcal{L}_{\\pi^\\sharp\\alpha}\\beta - \\mathcal{L}_{\\pi^\\sharp\\beta}\\alpha - d\\langle\\pi^\\sharp\\alpha,\\beta\\rangle$.",
-                "**Adım 1:** Sol tarafı Koszul bracket formülüyle aç."
-            ))
-            st.markdown(L(
-                "**Step 2:** Commute $\\mathcal{L}_U$ past $\\pi^\\sharp$ via key identity:",
-                "**Adım 2:** Anahtar kimlikle $\\mathcal{L}_U$'yu $\\pi^\\sharp$ yanından geçir:"
-            ))
-            st.latex(r"\mathcal{L}_U(\pi^\sharp\eta) - \pi^\sharp(\mathcal{L}_U\eta) = \tilde{K}_\eta U")
-            st.markdown(L(
-                "**Step 3:** After 109 full expansions, all terms collect to RHS. $\\square$",
-                "**Adım 3:** 109 tam açılım sonrasında tüm terimler sağ tarafa toplanır. $\\square$"
-            ))
-            st.caption(L("Jacopy handles all 109 steps automatically.", "Jacopy tüm 109 adımı otomatik halleder."))
-            st.download_button(L("⬇ Download as LaTeX","⬇ LaTeX olarak indir"),
-                "\\documentclass{amsart}\n\\usepackage{amsmath}\n\\begin{document}\n\\section*{Derivator Identity (1)}\n$$\\mathcal{D}^{T^*M}_{\\mathcal{L}_U}(\\eta,\\mu) = \\mathcal{L}_{\\tilde{K}_\\eta U}\\mu + K_{\\tilde{K}_\\mu U}\\eta$$\n\\begin{proof}\nExpand Koszul bracket, commute via $\\mathcal{L}_U\\pi^\\sharp\\eta-\\pi^\\sharp\\mathcal{L}_U\\eta=\\tilde{K}_\\eta U$, collect 109 terms. $\\square$\n\\end{proof}\n\\end{document}",
-                file_name="derivator_1_proof.tex", mime="text/plain", key="dl_v3")
-        st.markdown("---")
         if st.button(L("▶ Prove identity (1) — 109 steps", "▶ Kimlik (1)'i kanıtla — 109 adım"), key="alg_d1"):
             from jacopy.calculus.lie_derivative import lie_derivative
             from jacopy.calculus.cartan_remainder import K
@@ -1936,64 +1768,6 @@ with tabs[4]:
             ),
             r"\tilde{\mathcal{D}}^{SN}_{\tilde{\mathcal{L}}_\eta}(U,V) = \tilde{\mathcal{L}}_{K_U\eta}V + \tilde{K}_{K_V\eta}U"
         )
-        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanıt"), expanded=False):
-            st.markdown(L("### Identity (1') — Multivector Side (117 steps)", "### Kimlik (1') — Çokvektör Tarafı (117 adım)"))
-            st.latex(r"\tilde{{\mathcal{{D}}}}^{{SN}}_{{\tilde{{\mathcal{{L}}}}_\eta}}(U,V) = \tilde{{\mathcal{{L}}_{{K_U\eta}}}}V + \tilde{{K}}_{{K_V\eta}}U")
-            st.markdown(L(
-                "**Dual of Identity (1):** Replace forms $\\leftrightarrow$ multivectors, "
-                "$d \\leftrightarrow \\tilde{{d}}$, $\\iota \\leftrightarrow \\tilde{{\\iota}}$, "
-                "$K \\leftrightarrow \\tilde{{K}}$, Koszul bracket $\\leftrightarrow$ SN bracket.",
-                "**Kimlik (1)'in duali:** Formlar $\\leftrightarrow$ çokvektörler, "
-                "$d \\leftrightarrow \\tilde{{d}}$, $\\iota \\leftrightarrow \\tilde{{\\iota}}$, "
-                "$K \\leftrightarrow \\tilde{{K}}$, Koszul bracket $\\leftrightarrow$ SN bracket."
-            ))
-            st.markdown(L("**Step 1:** Expand the LHS using the tilde derivator definition:",
-                          "**Adım 1:** Sol tarafı tilde derivator tanımını kullanarak aç:"))
-            st.latex(r"\tilde{{\mathcal{{D}}}}^{{SN}}_{{\tilde{{\mathcal{{L}}}}_\eta}}(U,V) = \tilde{{\mathcal{{L}}}}_\eta[U,V]_{{SN}} - [\tilde{{\mathcal{{L}}}}_\eta U,V]_{{SN}} - [U,\tilde{{\mathcal{{L}}}}_\eta V]_{{SN}}")
-            st.markdown(L("**Step 2:** Expand using $[U,V]_{{SN}} = [\\pi,U]_{{SN}} \\circ V - ...$:",
-                          "**Adım 2:** $[U,V]_{{SN}}$ formülüyle aç:"))
-            st.latex(r"\tilde{{\mathcal{{L}}}}_\eta U = [\pi,\eta,U]_{{SN}} \text{{ (tilde Lie derivative)}}")
-            st.markdown(L("**Step 3:** Commute $\\tilde{{\\mathcal{{L}}}}_\\eta$ past the SN bracket using the key identity:",
-                          "**Adım 3:** SN bracket yanından geçirmek için anahtar kimliği kullan:"))
-            st.latex(r"\tilde{{\mathcal{{L}}}}_\eta([U,V]_{{SN}}) - [\tilde{{\mathcal{{L}}}}_\eta U, V]_{{SN}} - [U, \tilde{{\mathcal{{L}}}}_\eta V]_{{SN}} = [[\pi,\eta]_{{SN}}, U, V]_{{...}}")
-            st.markdown(L("**Step 4:** After 117 expansion steps, collect to:",
-                          "**Adım 4:** 117 açılım adımından sonra topla:"))
-            st.latex(r"= \tilde{{\mathcal{{L}}}}_{{K_U\eta}}V + \tilde{{K}}_{{K_V\eta}}U \qquad \square")
-            st.info(L(
-                "**Why 117 steps?** The multivector side has more expansion paths than the form side (109 steps) "
-                "because the SN bracket has more atomic cases than the Koszul bracket.",
-                "**Neden 117 adım?** Çokvektör tarafı, form tarafından (109 adım) daha fazla açılım yoluna sahiptir "
-                "çünkü SN bracket, Koszul bracket'tan daha fazla atomik duruma sahiptir."
-            ))
-            latex_v4 = '\\documentclass{{amsart}}\n\\usepackage{{amsmath,amssymb,geometry}}\n\\geometry{{margin=2.5cm}}\n\\begin{{document}}\n\\section*{{Derivator Identity (1\'') --- Multivector Side}}\n\\textbf{{Identity (1\'):}}\n\\begin{{equation*}}\n\\tilde{{\\mathcal{{D}}}}^{{SN}}_{{\\tilde{{\\mathcal{{L}}}}_\\eta}}(U,V) = \\tilde{{\\mathcal{{L}}}}_{{K_U\\eta}}V + \\tilde{{K}}_{{K_V\\eta}}U\n\\end{{equation*}}\n\\begin{{proof}}\nDual of Identity (1): replace $d\\leftrightarrow\\tilde{{d}}$, $\\iota\\leftrightarrow\\tilde{{\\iota}}$, $K\\leftrightarrow\\tilde{{K}}$, Koszul$\\leftrightarrow$SN.\nExpand the LHS, commute $\\tilde{{\\mathcal{{L}}}}_\\eta$ past SN brackets, and collect 117 terms. $\\square$\n\\end{{proof}}\n\\end{{document}}'
-            st.download_button(
-                L("⬇ Download as LaTeX (.tex)", "⬇ LaTeX olarak indir (.tex)"),
-                latex_v4,
-                file_name="derivator_identity_1p_proof.tex",
-                mime="text/plain",
-                key="dl_v4",
-            )
-        st.markdown("---")
-        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanıt"), expanded=False):
-            st.markdown(L("### Identity (1'): Exact Dual of Identity (1)", "### Kimlik (1'): Kimlik (1)'in Tam Duali"))
-            st.latex(r"\tilde{\mathcal{D}}^{SN}_{\tilde{\mathcal{L}}_\eta}(U,V) = \tilde{\mathcal{L}}_{K_U\eta}V + \tilde{K}_{K_V\eta}U")
-            st.markdown(L("Replace every object with its tilde dual:", "Her nesneyi tilde dualiyle değiştir:"))
-            c1, c2 = st.columns(2)
-            c1.markdown("**Form side (Identity 1)**")
-            c2.markdown("**Multivector side (Identity 1')**")
-            for f, m in [("$d$","$\\\\tilde{d}$"),("$\\\\iota$","$\\\\tilde{\\\\iota}$"),
-                         ("$\\\\mathcal{L}$","$\\\\tilde{\\\\mathcal{L}}$"),("$K$","$\\\\tilde{K}$"),
-                         ("Koszul bracket","SN bracket"),("109 steps","117 steps")]:
-                c1, c2 = st.columns(2)
-                c1.markdown(f); c2.markdown(m)
-            st.markdown(L(
-                "**Why 117 and not 109?** The SN bracket has more atomic cases than Koszul — 8 extra expansion paths.",
-                "**Neden 117?** SN bracket'ın Koszul'dan daha fazla atomik durumu var — 8 ekstra açılım yolu."
-            ))
-            st.download_button(L("⬇ Download as LaTeX","⬇ LaTeX olarak indir"),
-                "\\documentclass{amsart}\n\\usepackage{amsmath}\n\\begin{document}\n\\section*{Derivator Identity (1')}\n$$\\tilde{\\mathcal{D}}^{SN}_{\\tilde{\\mathcal{L}}_\\eta}(U,V) = \\tilde{\\mathcal{L}}_{K_U\\eta}V + \\tilde{K}_{K_V\\eta}U$$\n\\begin{proof}\nExact dual of Identity (1): replace $d\\leftrightarrow\\tilde{d}$, $\\iota\\leftrightarrow\\tilde{\\iota}$, $K\\leftrightarrow\\tilde{K}$, Koszul$\\leftrightarrow$SN. Collect 117 terms. $\\square$\n\\end{proof}\n\\end{document}",
-                file_name="derivator_1p_proof.tex", mime="text/plain", key="dl_v4")
-        st.markdown("---")
         if st.button(L("▶ Prove identity (1') — 117 steps", "▶ Kimlik (1')'i kanıtla — 117 adım"), key="alg_d1p"):
             from jacopy.brackets.schouten import sn as sn_mv
             from jacopy.calculus.cartan_remainder import K
@@ -2030,65 +1804,6 @@ with tabs[4]:
                 "Bu, iki kalkülüs arasındaki en derin uyumluluk sonucudur."
             )
         )
-        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanıt"), expanded=False):
-            st.markdown(L("### Why the Same Obstruction?", "### Neden Aynı Obstrüksiyon?"))
-            st.markdown(L(
-                "The Poisson Jacobi identity $\\mathrm{{Jac}}_\\pi(f,g,h)=0$ and "
-                "the Koszul Jacobi identity $\\mathrm{{Jac}}_{{[\\cdot,\\cdot]_K}}(\\alpha,\\beta,\\gamma)=0$ "
-                "look different — one is on functions, the other on 1-forms. "
-                "Yet both reduce to the **same** condition $[\\pi,\\pi]_{{SN}}=0$.",
-                "Poisson Jacobi kimliği $\\mathrm{{Jac}}_\\pi(f,g,h)=0$ ve "
-                "Koszul Jacobi kimliği $\\mathrm{{Jac}}_{{[\\cdot,\\cdot]_K}}(\\alpha,\\beta,\\gamma)=0$ "
-                "farklı görünür — biri fonksiyonlarda, diğeri 1-formlarda. "
-                "Ama her ikisi de **aynı** koşula indirgenir: $[\\pi,\\pi]_{{SN}}=0$."
-            ))
-            st.markdown(L("**Step 1:** Function Jacobi — Lichnerowicz formula:", "**Adım 1:** Fonksiyon Jacobi — Lichnerowicz formülü:"))
-            st.latex(r"\mathrm{{Jac}}_\pi(f,g,h) = \tfrac{{1}}{{2}}[\pi,\pi]_{{SN}}(df,dg,dh)")
-            st.markdown(L("**Step 2:** Koszul Jacobi — same formula on exact forms $\\alpha=df$:",
-                          "**Adım 2:** Koszul Jacobi — kesin formlarda aynı formül $\\alpha=df$:"))
-            st.latex(r"\mathrm{{Jac}}_{{[\cdot,\cdot]_K}}(df,dg,dh) = \tfrac{{1}}{{2}}[\pi,\pi]_{{SN}}(df,dg,dh)")
-            st.markdown(L("**Step 3:** Both vanish iff $[\\pi,\\pi]_{{SN}}=0$:", "**Adım 3:** Her ikisi de ancak ve ancak $[\\pi,\\pi]_{{SN}}=0$ ise sıfırlanır:"))
-            st.latex(r"\mathrm{{Jac}}_\pi \equiv 0 \iff \mathrm{{Jac}}_{{[\cdot,\cdot]_K}} \equiv 0 \iff [\pi,\pi]_{{SN}} = 0 \qquad \square")
-            st.markdown(L(
-                "**Deep reason:** The Koszul bracket is the **derived bracket** of the SN bracket w.r.t. $\\pi$. "
-                "So both Jacobi identities are manifestations of the same underlying SN Jacobi for $\\pi$.",
-                "**Derin neden:** Koszul bracket, $\\pi$'ye göre SN bracket'ın **türetilmiş bracket**'ıdır. "
-                "Dolayısıyla her iki Jacobi kimliği de $\\pi$ için aynı temel SN Jacobi'nin tezahürüdür."
-            ))
-            latex_v5 = '\\documentclass{{amsart}}\n\\usepackage{{amsmath,amssymb,geometry}}\n\\geometry{{margin=2.5cm}}\n\\begin{{document}}\n\\section*{{Same Obstruction: Function vs Form Jacobi}}\n\\begin{{proof}}\nBy the Lichnerowicz formula:\n\\begin{{equation*}}\n\\mathrm{{Jac}}_\\pi(f,g,h) = \\tfrac{{1}}{{2}}[\\pi,\\pi]_{{SN}}(df,dg,dh) = \\mathrm{{Jac}}_{{[\\cdot,\\cdot]_K}}(df,dg,dh)\n\\end{{equation*}}\nBoth vanish iff $[\\pi,\\pi]_{{SN}}=0$. $\\square$\n\\end{{proof}}\n\\end{{document}}'
-            st.download_button(
-                L("⬇ Download as LaTeX (.tex)", "⬇ LaTeX olarak indir (.tex)"),
-                latex_v5,
-                file_name="same_obstruction_proof.tex",
-                mime="text/plain",
-                key="dl_v5",
-            )
-        st.markdown("---")
-        with st.expander(L("📖 Mathematical Proof", "📖 Matematiksel Kanıt"), expanded=False):
-            st.markdown(L("### Why the Same Obstruction?", "### Neden Aynı Obstrüksiyon?"))
-            st.markdown(L(
-                "**Step 1:** Function Jacobi via Lichnerowicz formula:",
-                "**Adım 1:** Lichnerowicz formülüyle fonksiyon Jacobi:"
-            ))
-            st.latex(r"\mathrm{Jac}_\pi(f,g,h) = \tfrac{1}{2}[\pi,\pi]_{SN}(df,dg,dh)")
-            st.markdown(L(
-                "**Step 2:** Koszul Jacobi on exact 1-forms $\\alpha=df$:",
-                "**Adım 2:** Kesin 1-formlarda Koszul Jacobi $\\alpha=df$:"
-            ))
-            st.latex(r"\mathrm{Jac}_{[\cdot,\cdot]_K}(df,dg,dh) = \tfrac{1}{2}[\pi,\pi]_{SN}(df,dg,dh)")
-            st.markdown(L(
-                "**Step 3:** Both vanish simultaneously:",
-                "**Adım 3:** Her ikisi aynı anda sıfırlanır:"
-            ))
-            st.latex(r"\mathrm{Jac}_\pi\equiv 0 \iff \mathrm{Jac}_{[\cdot,\cdot]_K}\equiv 0 \iff [\pi,\pi]_{SN}=0 \qquad \square")
-            st.info(L(
-                "Deep reason: The Koszul bracket is the derived bracket of SN w.r.t. pi. Both Jacobi identities are manifestations of the same underlying SN Jacobi.",
-                "Derin neden: Koszul bracket, pi'ye göre SN'nin türetilmiş bracket'ıdır. Her iki Jacobi de aynı temel SN Jacobi'nin tezahürüdür."
-            ))
-            st.download_button(L("⬇ Download as LaTeX","⬇ LaTeX olarak indir"),
-                "\\documentclass{amsart}\n\\usepackage{amsmath}\n\\begin{document}\n\\section*{Same Obstruction: Function vs Form Jacobi}\n\\begin{proof}\nBy the Lichnerowicz formula:\n$$\\mathrm{Jac}_\\pi(f,g,h)=\\tfrac{1}{2}[\\pi,\\pi]_{SN}(df,dg,dh)=\\mathrm{Jac}_{[\\cdot,\\cdot]_K}(df,dg,dh)$$\nBoth vanish iff $[\\pi,\\pi]_{SN}=0$. Deep reason: Koszul is the derived bracket of SN w.r.t. $\\pi$. $\\square$\n\\end{proof}\n\\end{document}",
-                file_name="same_obstruction_proof.tex", mime="text/plain", key="dl_v5")
-        st.markdown("---")
         if st.button(L("▶ Show same obstruction", "▶ Aynı obstrüksiyonu göster"), key="alg_compat"):
             reg_c = PropertyRegistry()
             pi_c = Bivector("π", registry=reg_c); reg_c.declare(pi_c, Poisson())
