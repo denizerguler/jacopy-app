@@ -13,6 +13,8 @@ st.set_page_config(
     layout="wide",
     page_icon="∂",
 )
+st.logo("docs/tutorials/jacopy_logo.png")
+
 
 # ── Language ──────────────────────────────────────────────────
 lang = st.sidebar.radio("🌐 Language / Dil", ["English", "Türkçe"])
