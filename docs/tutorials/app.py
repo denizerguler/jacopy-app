@@ -1,4 +1,5 @@
 import sys
+import importlib.util
 from pathlib import Path
 import streamlit as st
 
@@ -138,6 +139,8 @@ tabs = st.tabs([
     L("IV · Metric-Affine",        "IV · Metrik-Affin"),
     L("V · Algebroid Calculus",    "V · Algebroid Kalkülüs"),
     L("VI · Research Interface",   "VI · Araştırma Arayüzü"),
+    L("VII · BDCP Lie Algebroids", "VII · BDCP Lie Algebroidleri"),
+    L("VIII · Connections & 3-Lie", "VIII · Bağlantılar ve 3-Lie"),
 ])
 
 # ══════════════════════════════════════════════════════════════
@@ -2120,3 +2123,39 @@ with tabs[5]:
                 if hasattr(thm, "statement"): st.write(f"**statement:** {thm.statement}")
                 st.write(f"**from_axioms:** {thm.from_axioms}")
                 st.write(f"**steps:** {len(thm.proof)}")
+
+# ══════════════════════════════════════════════════════════════
+# TAB VII–VIII — External mathematical tutorial modules
+# ══════════════════════════════════════════════════════════════
+def _load_tutorial_module(filename: str, module_name: str):
+    path = Path(__file__).resolve().parent / filename
+    if not path.is_file():
+        raise FileNotFoundError(f"Tutorial file not found: {path}")
+    spec = importlib.util.spec_from_file_location(module_name, path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Cannot load tutorial module: {path}")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    return module
+
+with tabs[6]:
+    try:
+        tutorial_34 = _load_tutorial_module(
+            "34_bdcp_lie_algebroids.py", "jacopy_tutorial_34"
+        )
+        tutorial_34.render(L, TR)
+    except Exception as exc:
+        st.error(L("Tutorial VII could not be loaded.", "VII. öğretici yüklenemedi."))
+        st.exception(exc)
+
+with tabs[7]:
+    try:
+        tutorial_35 = _load_tutorial_module(
+            "35_lie_algebroid_connections_3_lie.py", "jacopy_tutorial_35"
+        )
+        tutorial_35.render(L, TR)
+    except Exception as exc:
+        st.error(L("Tutorial VIII could not be loaded.", "VIII. öğretici yüklenemedi."))
+        st.exception(exc)
+
